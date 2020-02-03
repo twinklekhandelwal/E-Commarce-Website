@@ -1,7 +1,7 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Route,Switch } from 'react-router-dom'
+import { BrowserRouter, Route,Switch,Link } from 'react-router-dom'
 import Navbar from './componants/navbar'
 import ProductList from './componants/productlist'
 import Details from './componants/detail'
@@ -13,7 +13,7 @@ function App() {
   return (
     <React.Fragment>
 <Navbar/>
-< BrowserRouter>
+
 <Switch>
   <Route exact path="/" component={ProductList}></Route>
   <Route path="/detail" component={Details}></Route>
@@ -21,7 +21,7 @@ function App() {
  
   <Route path="defalut" component={Defalut}></Route>
   </Switch>
-</ BrowserRouter>
+
  
      </React.Fragment>
   );
