@@ -1,6 +1,7 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
+import Cart from "./componants/Cart/Cart"
 import { Route, Switch } from 'react-router-dom';
 import Navbar from './componants/navbar';
 import ProductList from './componants/productlist';
@@ -22,6 +23,7 @@ function App() {
 				<Route path="defalut" component={Defalut}></Route>
 			</Switch>
 			<Modal/>
+			<Cart/>
 		</React.Fragment>
 	);
 }

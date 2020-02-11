@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { storeProducts, detailProduct } from './data';
 const ProductContext = React.createContext();
 class ProductProvider extends Component {
-	state = { products: storeProducts, detailProduct: detailProduct, cart: [], modalOpen: true ,modalProdact:detailProduct};
+	state = { products: storeProducts, detailProduct: detailProduct, cart: [], modalOpen:false ,modalProdact:detailProduct};
 	componentDidMount() {
 		this.setProducts();
 	}
@@ -30,7 +30,7 @@ class ProductProvider extends Component {
 			return { detailProduct: product };
 		});
 	};
-	addToCard = id => {
+	addToCart = (id) => {
 		let temproducts = [...this.state.products];
 		const index = temproducts.indexOf(this.getItem(id));
 		const product = temproducts[index];
@@ -38,7 +38,7 @@ class ProductProvider extends Component {
 		product.count = 1;
 		const price = product.price;
 		product.total = price;
-		this.state(
+		this.setState(
 			() => {
 				return { products: temproducts, cart: [...this.state.cart, product] };
 			},
@@ -47,7 +47,7 @@ class ProductProvider extends Component {
 			},
 		);
 	};
-	openModal = id => {
+	openModal = (id) => {
 		const product = this.getItem(id);
 		this.setState(() => {
 			return { modalProdact: product, modalOpen: true };
@@ -58,6 +58,18 @@ class ProductProvider extends Component {
 			return { modalOpen: false };
 		});
 	};
+	increment=(id)=>{
+		console.log("csc")
+	}
+	decrement=(id)=>{
+		console.log("ccc")
+	}
+	removeItem=(id)=>{
+		console.log("rcc")
+	}
+	clearcart=(id)=>{
+		console.log("rcc")
+	}
 	render() {
 		return (
 			<ProductContext.Provider
@@ -67,6 +79,10 @@ class ProductProvider extends Component {
 					addToCart: this.addToCart,
 					openModal: this.openModal,
 					closeModal: this.closeModal,
+				increment:this.increment,
+				decrement:this.decrement,
+				removeItem:this.removeItem,
+				clearcart:this.clearcart
 				}}>
 				{this.props.children}
 			</ProductContext.Provider>
