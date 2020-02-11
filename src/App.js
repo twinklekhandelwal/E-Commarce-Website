@@ -8,7 +8,7 @@ import Details from './componants/detail';
 import Card from './componants/card';
 import Defalut from './componants/defalut';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Modal from './componants/modal'
 function App() {
 	return (
 		<React.Fragment>
@@ -21,6 +21,7 @@ function App() {
 
 				<Route path="defalut" component={Defalut}></Route>
 			</Switch>
+			<Modal/>
 		</React.Fragment>
 	);
 }
