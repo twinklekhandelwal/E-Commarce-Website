@@ -1,12 +1,12 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import Cart from "./componants/Cart/Cart"
+// import Cart from "./componants/Cart/card"
 import { Route, Switch } from 'react-router-dom';
 import Navbar from './componants/navbar';
 import ProductList from './componants/productlist';
 import Details from './componants/detail';
-import Card from './componants/card';
+import Card from './componants/Cart/card';
 import Defalut from './componants/defalut';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Modal from './componants/modal'
@@ -23,7 +23,7 @@ function App() {
 				<Route path="defalut" component={Defalut}></Route>
 			</Switch>
 			<Modal/>
-			<Cart/>
+		
 		</React.Fragment>
 	);
 }

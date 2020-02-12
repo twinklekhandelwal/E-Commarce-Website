@@ -2,7 +2,16 @@ import React, { Component } from 'react';
 import { storeProducts, detailProduct } from './data';
 const ProductContext = React.createContext();
 class ProductProvider extends Component {
-	state = { products: storeProducts, detailProduct: detailProduct, cart: [], modalOpen:false ,modalProdact:detailProduct};
+	state = {
+		products: storeProducts,
+		detailProduct: detailProduct,
+		cart: storeProducts,
+		modalOpen: false,
+		modalProdact: detailProduct,
+		cartSubTotal:0,
+		cartTax:0,
+		cartTotle:0
+	};
 	componentDidMount() {
 		this.setProducts();
 	}
@@ -30,7 +39,7 @@ class ProductProvider extends Component {
 			return { detailProduct: product };
 		});
 	};
-	addToCart = (id) => {
+	addToCart = id => {
 		let temproducts = [...this.state.products];
 		const index = temproducts.indexOf(this.getItem(id));
 		const product = temproducts[index];
@@ -47,7 +56,7 @@ class ProductProvider extends Component {
 			},
 		);
 	};
-	openModal = (id) => {
+	openModal = id => {
 		const product = this.getItem(id);
 		this.setState(() => {
 			return { modalProdact: product, modalOpen: true };
@@ -58,18 +67,18 @@ class ProductProvider extends Component {
 			return { modalOpen: false };
 		});
 	};
-	increment=(id)=>{
-		console.log("csc")
-	}
-	decrement=(id)=>{
-		console.log("ccc")
-	}
-	removeItem=(id)=>{
-		console.log("rcc")
-	}
-	clearcart=(id)=>{
-		console.log("rcc")
-	}
+	increment = id => {
+		console.log('csc');
+	};
+	decrement = id => {
+		console.log('ccc');
+	};
+	removeItem = id => {
+		console.log('rcc');
+	};
+	clearcart = id => {
+		console.log('rcc');
+	};
 	render() {
 		return (
 			<ProductContext.Provider
@@ -79,10 +88,10 @@ class ProductProvider extends Component {
 					addToCart: this.addToCart,
 					openModal: this.openModal,
 					closeModal: this.closeModal,
-				increment:this.increment,
-				decrement:this.decrement,
-				removeItem:this.removeItem,
-				clearcart:this.clearcart
+					increment: this.increment,
+					decrement: this.decrement,
+					removeItem: this.removeItem,
+					clearcart: this.clearcart,
 				}}>
 				{this.props.children}
 			</ProductContext.Provider>
