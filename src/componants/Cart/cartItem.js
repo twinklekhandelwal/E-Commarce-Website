@@ -1,9 +1,10 @@
 import React from 'react';
 
-export default function CartItem(item ,value){
-  console.log(item)
-const {id,title,img,price,total,count} = item;
-const{increment,decrement,removeitem}=value;
+export default function CartItem({ item , value }){
+  // console.log(item)
+  
+const {img,title,id,price,total,count} = item;
+const{increment,decrement,removeItem}=value;
 
   return (
     <div className="row my-1 text-capitalize text-center">
@@ -22,11 +23,12 @@ const{increment,decrement,removeitem}=value;
         <div className="d-flex justify-content-center">price:</div>
         <div>
           <span className="btn ntn-black mx-1" onClick={()=>decrement(id)}>-</span>
+  <span className="btn btn-black mx-1">{count}</span>
           <span className="btn btn-black mx-1"onClick={()=>increment(id)}>+</span>
         </div>
         </div>
         <div className="col-10 mx-auto col-lg-2">
-          <div className="cart-icon" onClick={()=>removeitem(id)}>
+          <div className="cart-icon" onClick={()=>removeItem(id)}>
        <i className="fas fa-trash"/>
        </div>
         </div>

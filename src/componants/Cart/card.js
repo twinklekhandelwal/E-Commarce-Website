@@ -10,7 +10,7 @@ export default class Card extends Component {
 	render() {
 		return (
 			<section>
-				<Title name="your" title="cart" />
+				
 				<ProductConsumer>
 					{value => {
 						const { cart } = value;
