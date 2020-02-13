@@ -3,7 +3,7 @@ import { storeProducts, detailProduct } from './data';
 const ProductContext = React.createContext();
 class ProductProvider extends Component {
 	state = {
-		products: storeProducts,
+		products: [],
 		detailProduct: detailProduct,
 		cart: storeProducts,
 		modalOpen: false,
@@ -28,7 +28,7 @@ class ProductProvider extends Component {
 	};
 
 	getItem = id => {
-		console.log(id);
+		
 		const product = this.state.products.find(item => item.id === id);
 		return product;
 	};
@@ -52,7 +52,7 @@ class ProductProvider extends Component {
 				return { products: temproducts, cart: [...this.state.cart, product] };
 			},
 			() => {
-				console.log(this.state);
+				this.addTotals();
 			},
 		);
 	};
@@ -74,11 +74,31 @@ class ProductProvider extends Component {
 		console.log('ccc');
 	};
 	removeItem = id => {
-		console.log('rcc');
+		
 	};
 	clearcart = id => {
-		console.log('rcc');
+		this.setState(()=>{
+			return{cart:[]};
+		},()=>{
+			this.setProducts();
+			this.addTotals();
+		})
 	};
+	addTotals=()=>{
+		let subTotal=0;
+		this.state.cart.map(item=>(subTotal+=item.total));
+		const tempTax=subTotal*0.1;
+		const tax=parseFloat(tempTax.toFixed(2));
+		const total=subTotal+tax
+		this.setState(()=>{
+			return{
+				cartSubTotal:subTotal,
+				cartTax:tax,
+				cartTotal:total
+
+			}
+		})
+	}
 	render() {
 		return (
 			<ProductContext.Provider
